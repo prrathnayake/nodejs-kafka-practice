@@ -43,7 +43,8 @@ async function consumerExample() {
   const config = await configFromPath(configPath);
 
   //let seen = 0;
-  let topic = process.argv[3];
+  let topic = 'purchases_';
+  let partition = 3;
 
   const consumer = await createConsumer(config, ({key, value}) => {
     let k = key.toString().padEnd(10, ' ');
@@ -51,6 +52,7 @@ async function consumerExample() {
   });
 
   consumer.subscribe([topic]);
+  consumer.commit([partition])
   consumer.consume();
 
   process.on('SIGINT', () => {

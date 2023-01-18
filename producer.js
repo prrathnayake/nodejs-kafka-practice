@@ -42,7 +42,8 @@ async function produceExample() {
   let configPath = process.argv.slice(2)[0];
   const config = await configFromPath(configPath);
 
-  let topic = process.argv[3];
+  let topic = 'purchases_';
+  let partition = 3;
 
   let users = [ "eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther" ];
   let items = [ "book", "alarm clock", "t-shirts", "gift card", "batteries" ];
@@ -63,7 +64,7 @@ async function produceExample() {
     const key = users[Math.floor(Math.random() * users.length)];
     const value = Buffer.from(items[Math.floor(Math.random() * items.length)]);
 
-    producer.produce(topic, -1, value, key);
+    producer.produce(topic, partition, value, key);
   }
 
   producer.flush(10000, () => {
