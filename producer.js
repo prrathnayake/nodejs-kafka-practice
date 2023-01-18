@@ -42,7 +42,7 @@ async function produceExample() {
   let configPath = process.argv.slice(2)[0];
   const config = await configFromPath(configPath);
 
-  let topic = "purchases";
+  let topic = process.argv[3];
 
   let users = [ "eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther" ];
   let items = [ "book", "alarm clock", "t-shirts", "gift card", "batteries" ];

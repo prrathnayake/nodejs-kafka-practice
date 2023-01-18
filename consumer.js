@@ -43,7 +43,7 @@ async function consumerExample() {
   const config = await configFromPath(configPath);
 
   //let seen = 0;
-  let topic = "purchases";
+  let topic = process.argv[3];
 
   const consumer = await createConsumer(config, ({key, value}) => {
     let k = key.toString().padEnd(10, ' ');
